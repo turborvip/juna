@@ -1,0 +1,26 @@
+.product_item .product_item_btns {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s ease-in-out;
+}
+
+.product_item:hover .product_item_btns {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product_item .product_item_btns .btn_buy:hover {
+  background-color: tan;
+  color: white;
+  cursor: pointer;
+}
+
+.product_item .product_item_btns .add_to_cart:hover {
+  background-color: tan;
+  color: white;
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
