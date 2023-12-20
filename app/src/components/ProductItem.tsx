@@ -13,21 +13,26 @@ import Link from "next/link";
 import React from "react";
 import { FaCartPlus, FaPaperPlane } from "react-icons/fa";
 
-function ProductItem({ index, item,addToCard }: any) {
-    const handleAddToCard = (addToCard :any)=> {
-        let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")||'[]') : [];
-        let itemOld = cart.find((record:any)=>record.code == item.code);
-        let itemOldIndex;
-        if(itemOld){
-            itemOldIndex = cart.findIndex((record:any)=> record.code == item.code)
-            cart[itemOldIndex].quantity++;
-        }else{
-            item.quantity = 1;
-            cart.push(item);
-        }
-        localStorage.setItem("cart",JSON.stringify(cart))
-        addToCard()
+function ProductItem({ index, item, addToCard }: any) {
+  const handleAddToCard = (addToCard: any) => {
+    let cart = [];
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
     }
+    let itemOld = cart.find((record: any) => record.code == item.code);
+    let itemOldIndex;
+    if (itemOld) {
+      itemOldIndex = cart.findIndex((record: any) => record.code == item.code);
+      cart[itemOldIndex].quantity++;
+    } else {
+      item.quantity = 1;
+      cart.push(item);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    addToCard();
+  };
   return (
     <Box position={"relative"} className="product_item">
       <Box
@@ -57,7 +62,7 @@ function ProductItem({ index, item,addToCard }: any) {
         </div>
       </Box>
       <Box
-        bg={useColorModeValue("gray.800","gray.300")}
+        bg={useColorModeValue("gray.800", "gray.300")}
         height={"75px"}
         position={"absolute"}
         width={"100%"}
@@ -65,13 +70,30 @@ function ProductItem({ index, item,addToCard }: any) {
         className="product_item_btns"
       >
         <SimpleGrid columns={2} spacing={2}>
-            <Link href={`../pages/detail/${item.code}`}>
-          <Center h={"75px"} bg={useColorModeValue("gray.600","gray.200")} className="btn_buy">
-            <Icon as={FaPaperPlane} fontSize={"2xl"} color={useColorModeValue("gray.200","gray.800")}/>
-          </Center>
+          <Link href={`../pages/detail/${item.code}`}>
+            <Center
+              h={"75px"}
+              bg={useColorModeValue("gray.600", "gray.200")}
+              className="btn_buy"
+            >
+              <Icon
+                as={FaPaperPlane}
+                fontSize={"2xl"}
+                color={useColorModeValue("gray.200", "gray.800")}
+              />
+            </Center>
           </Link>
-          <Center h={"75px"} bg={useColorModeValue("gray.600","gray.200")} className="add_to_cart" onClick={()=>handleAddToCard(addToCard)}>
-            <Icon as={FaCartPlus} fontSize={"2xl"} color={useColorModeValue("gray.200","gray.800")}/>
+          <Center
+            h={"75px"}
+            bg={useColorModeValue("gray.600", "gray.200")}
+            className="add_to_cart"
+            onClick={() => handleAddToCard(addToCard)}
+          >
+            <Icon
+              as={FaCartPlus}
+              fontSize={"2xl"}
+              color={useColorModeValue("gray.200", "gray.800")}
+            />
           </Center>
         </SimpleGrid>
       </Box>

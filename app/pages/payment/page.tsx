@@ -36,30 +36,58 @@ function Payment() {
   const [amount, setAmount] = useState<any>(0);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  let cart = [];
+  if (typeof window !== "undefined") {
+    cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart") || "[]")
+      : [];
+  }
 
   const handleRemoveItem = (code: any) => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = [];
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
+    }
     cart = cart.filter((item: any) => item.code != code);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
     setDataCard(cart);
   };
 
   const handleChangeQuantity = (code: any, quantity: any) => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = [];
+
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
+    }
     let itemIndex = cart.findIndex((item: any) => item.code == code);
     cart[itemIndex].quantity = quantity;
-    localStorage.setItem("cart", JSON.stringify(cart));
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
     setDataCard(cart);
   };
   useEffect(() => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = [];
+
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
+    }
     setDataCard(cart);
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
       total = total + cart[i].quantity * cart[i].cost;
     }
     setAmount(total);
-  }, [localStorage.getItem("cart")]);
+  }, [cart]);
   return (
     <>
       <Container maxW={"7xl"} my={35} py={20}>
