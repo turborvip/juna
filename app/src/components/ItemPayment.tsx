@@ -83,7 +83,8 @@ function ItemPayment({
         onClick={() => {
           handleRemoveItem(item.code);
         }}
-      >
+      > 
+      
         x
       </Text>
     </Card>
