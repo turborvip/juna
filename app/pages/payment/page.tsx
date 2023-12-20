@@ -150,6 +150,7 @@ function Payment() {
               </Button>
             </ModalFooter>
           </ModalContent>
+          
         </Modal>
       </Container>
     </>
