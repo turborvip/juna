@@ -25,37 +25,30 @@ function DrawerCus({ isOpen, onOpenDrawer, onCloseDrawer, btnRef }: any) {
   const [dataCard, setDataCard] = useState<any>();
   const [amount, setAmount] = useState<any>(0);
 
-  let cart = [];
-  if (typeof window !== "undefined") {
-    cart = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart") || "[]")
-      : [];
-  }
   useEffect(() => {
-    let cart = [];
     if (typeof window !== "undefined") {
-      cart = localStorage.getItem("cart")
+      let cart = localStorage.getItem("cart")
         ? JSON.parse(localStorage.getItem("cart") || "[]")
         : [];
+
+      setDataCard(cart);
+      let total = 0;
+      for (let i = 0; i < cart.length; i++) {
+        total = total + cart[0].quantity * cart[0].cost;
+      }
+      setAmount(total);
     }
-    setDataCard(cart);
-    let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-      total = total + cart[0].quantity * cart[0].cost;
-    }
-    setAmount(total);
-  }, [cart]);
+  }, [localStorage.getItem("cart")]);
 
   const handleRemoveItem = (code: any) => {
-    let cart = [];
     if (typeof window !== "undefined") {
-      cart = localStorage.getItem("cart")
+      let cart = localStorage.getItem("cart")
         ? JSON.parse(localStorage.getItem("cart") || "[]")
         : [];
+      cart = cart.filter((item: any) => item.code != code);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      setDataCard(cart);
     }
-    cart = cart.filter((item: any) => item.code != code);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    setDataCard(cart);
   };
   return (
     <Drawer

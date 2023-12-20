@@ -46,26 +46,25 @@ function Detail({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState<any>(1);
 
   const handleAddToCard = () => {
-    let cart = [];
     if (typeof window !== "undefined") {
-      cart = localStorage.getItem("cart")
+      let cart = localStorage.getItem("cart")
         ? JSON.parse(localStorage.getItem("cart") || "[]")
         : [];
+      let itemOld = cart.find((record: any) => record.code == product?.code);
+      let itemOldIndex;
+      if (itemOld) {
+        itemOldIndex = cart.findIndex(
+          (record: any) => record.code == product?.code
+        );
+        cart[itemOldIndex].quantity =
+          parseInt(cart[itemOldIndex].quantity) + parseInt(quantity);
+      } else {
+        let item = { ...product, quantity: 1 };
+        cart.push(item);
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      onOpenDrawer();
     }
-    let itemOld = cart.find((record: any) => record.code == product?.code);
-    let itemOldIndex;
-    if (itemOld) {
-      itemOldIndex = cart.findIndex(
-        (record: any) => record.code == product?.code
-      );
-      cart[itemOldIndex].quantity =
-        parseInt(cart[itemOldIndex].quantity) + parseInt(quantity);
-    } else {
-      let item = { ...product, quantity: 1 };
-      cart.push(item);
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    onOpenDrawer();
   };
   return (
     <>
