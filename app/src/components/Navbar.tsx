@@ -13,7 +13,6 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { ConnectWalletBtn, WalletInfor } from ".";
 import { menus } from "../constants";
 import { IMenu } from "../_types_";
 
