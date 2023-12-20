@@ -24,18 +24,35 @@ import React, { useEffect, useState } from "react";
 function DrawerCus({ isOpen, onOpenDrawer, onCloseDrawer, btnRef }: any) {
   const [dataCard, setDataCard] = useState<any>();
   const [amount, setAmount] = useState<any>(0);
+
+  let cart = [];
+  if (typeof window !== "undefined") {
+    cart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart") || "[]")
+      : [];
+  }
   useEffect(() => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = [];
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
+    }
     setDataCard(cart);
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
       total = total + cart[0].quantity * cart[0].cost;
     }
     setAmount(total);
-  }, [localStorage.getItem("cart")]);
+  }, [cart]);
 
   const handleRemoveItem = (code: any) => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = [];
+    if (typeof window !== "undefined") {
+      cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart") || "[]")
+        : [];
+    }
     cart = cart.filter((item: any) => item.code != code);
     localStorage.setItem("cart", JSON.stringify(cart));
     setDataCard(cart);
