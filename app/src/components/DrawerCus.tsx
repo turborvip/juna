@@ -24,6 +24,10 @@ import React, { useEffect, useState } from "react";
 function DrawerCus({ isOpen, onOpenDrawer, onCloseDrawer, btnRef }: any) {
   const [dataCard, setDataCard] = useState<any>();
   const [amount, setAmount] = useState<any>(0);
+  let cart 
+  if (typeof window !== "undefined") {
+  let cart = localStorage.getItem("cart")
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -38,7 +42,7 @@ function DrawerCus({ isOpen, onOpenDrawer, onCloseDrawer, btnRef }: any) {
       }
       setAmount(total);
     }
-  }, [localStorage.getItem("cart")]);
+  }, [cart]);
 
   const handleRemoveItem = (code: any) => {
     if (typeof window !== "undefined") {

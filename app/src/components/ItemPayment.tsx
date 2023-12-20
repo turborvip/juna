@@ -19,6 +19,10 @@ function ItemPayment({
   handleRemoveItem,
   handleChangeQuantity,
 }: any) {
+    let cart 
+  if (typeof window !== "undefined") {
+  let cart = localStorage.getItem("cart")
+  }
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
@@ -32,7 +36,7 @@ function ItemPayment({
   const dec = getDecrementButtonProps();
   const input = getInputProps();
 
-  useEffect(() => {}, [localStorage.getItem("cart")]);
+  useEffect(() => {}, [cart]);
 
   return (
     <Card
