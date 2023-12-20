@@ -15,7 +15,7 @@ import { FaCartPlus, FaPaperPlane } from "react-icons/fa";
 
 function ProductItem({ index, item,addToCard }: any) {
     const handleAddToCard = (addToCard :any)=> {
-        let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")||'[]') : [];
+        let cart = window?.localStorage.getItem("cart") ? JSON.parse(window?.localStorage.getItem("cart")||'[]') : [];
         let itemOld = cart.find((record:any)=>record.code == item.code);
         let itemOldIndex;
         if(itemOld){
@@ -25,7 +25,7 @@ function ProductItem({ index, item,addToCard }: any) {
             item.quantity = 1;
             cart.push(item);
         }
-        localStorage.setItem("cart",JSON.stringify(cart))
+        window?.localStorage.setItem("cart",JSON.stringify(cart))
         addToCard()
     }
   return (

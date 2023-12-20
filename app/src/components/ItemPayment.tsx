@@ -33,7 +33,7 @@ function ItemPayment({
   const input = getInputProps();
 
   useEffect(() => {
-  }, [localStorage.getItem("cart")]);
+  }, [window?.localStorage.getItem("cart")]);
 
   return (
     <Card
@@ -84,7 +84,7 @@ function ItemPayment({
           handleRemoveItem(item.code);
         }}
       > 
-      
+
         x
       </Text>
     </Card>

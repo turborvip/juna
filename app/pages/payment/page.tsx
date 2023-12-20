@@ -38,28 +38,28 @@ function Payment() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleRemoveItem = (code: any) => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = JSON.parse(window?.localStorage.getItem("cart") || "[]");
     cart = cart.filter((item: any) => item.code != code);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    window?.localStorage.setItem("cart", JSON.stringify(cart));
     setDataCard(cart);
   };
 
   const handleChangeQuantity = (code: any, quantity: any) => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = JSON.parse(window?.localStorage.getItem("cart") || "[]");
     let itemIndex = cart.findIndex((item: any) => item.code == code);
     cart[itemIndex].quantity = quantity;
-    localStorage.setItem("cart", JSON.stringify(cart));
+    window?.localStorage.setItem("cart", JSON.stringify(cart));
     setDataCard(cart);
   };
   useEffect(() => {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = JSON.parse(window?.localStorage.getItem("cart") || "[]");
     setDataCard(cart);
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
       total = total + cart[i].quantity * cart[i].cost;
     }
     setAmount(total);
-  }, [localStorage.getItem("cart")]);
+  }, [window?.localStorage.getItem("cart")]);
   return (
     <>
       <Container maxW={"7xl"} my={35} py={20}>
