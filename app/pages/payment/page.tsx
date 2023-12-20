@@ -138,10 +138,12 @@ function Payment() {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Hiện chúng tôi không thể chấp nhận đơn hàng trực tuyến</ModalHeader>
+            <ModalHeader>
+              Hiện chúng tôi không thể chấp nhận đơn hàng trực tuyến
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-            Vui lòng liên hệ với chúng tôi để hoàn tất giao dịch mua của bạn.
+              Vui lòng liên hệ với chúng tôi để hoàn tất giao dịch mua của bạn.
             </ModalBody>
 
             <ModalFooter>
@@ -150,7 +152,6 @@ function Payment() {
               </Button>
             </ModalFooter>
           </ModalContent>
-          
         </Modal>
       </Container>
     </>
