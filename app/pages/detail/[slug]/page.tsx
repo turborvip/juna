@@ -42,7 +42,7 @@ function Detail({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState<any>(1)
 
   const handleAddToCard = () =>{
-    let cart = window?.localStorage.getItem("cart") ? JSON.parse(window?.localStorage.getItem('cart')||'[]') : [];
+    let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem('cart')||'[]') : [];
     let itemOld = cart.find((record:any)=>record.code == product?.code);
     let itemOldIndex;
     if(itemOld){
@@ -52,7 +52,7 @@ function Detail({ params }: { params: { slug: string } }) {
         let item = {...product, quantity:1};
         cart.push(item);
     }
-    window?.localStorage.setItem("cart",JSON.stringify(cart))
+    localStorage.setItem("cart",JSON.stringify(cart))
     onOpenDrawer();
   }
   return (

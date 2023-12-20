@@ -33,7 +33,7 @@ function ItemPayment({
   const input = getInputProps();
 
   useEffect(() => {
-  }, [window?.localStorage.getItem("cart")]);
+  }, [localStorage.getItem("cart")]);
 
   return (
     <Card
