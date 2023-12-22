@@ -41,6 +41,7 @@ function ProductItem({ index, item, addToCard }: any) {
         border={"1px solid #6A4C3C"}
         padding={10}
         color={"#18473C"}
+        bg={useColorModeValue("white", "white")}
       >
         <div>
           <Image
