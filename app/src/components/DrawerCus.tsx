@@ -26,7 +26,7 @@ function DrawerCus({ isOpen, onOpenDrawer, onCloseDrawer, btnRef }: any) {
   const [amount, setAmount] = useState<any>(0);
   let cart 
   if (typeof window !== "undefined") {
-  let cart = localStorage.getItem("cart")
+    cart = localStorage.getItem("cart")
   }
 
   useEffect(() => {

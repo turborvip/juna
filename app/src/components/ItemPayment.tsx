@@ -21,7 +21,7 @@ function ItemPayment({
 }: any) {
     let cart 
   if (typeof window !== "undefined") {
-  let cart = localStorage.getItem("cart")
+    cart = localStorage.getItem("cart")
   }
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({

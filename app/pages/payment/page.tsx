@@ -38,7 +38,7 @@ function Payment() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   let cart 
   if (typeof window !== "undefined") {
-  let cart = localStorage.getItem("cart")
+    cart = localStorage.getItem("cart")
   }
 
   const handleRemoveItem = (code: any) => {
